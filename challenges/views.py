@@ -24,7 +24,22 @@ monthly_challenges = {
 # def january(request):
 #   return HttpResponse("Eat no meat for the entire month!")
 
+def index(request):
+
+    list_items = ""
+    months = list(monthly_challenges.keys())
+
+    for month in months:
+        cap_month = month.capitalize()
+        month_path = reverse("month_challenge", args = [month])
+        list_items += f"<li><a href=\"{month_path}\">{cap_month}</a></li>"
+
+    response_data = f"<ul>{list_items}</ul>"
+    return HttpResponse(response_data)
+
+
 def monthly_challenge_by_number(request, month):
+
     months = list(monthly_challenges.keys()) # as of Python 3.6, returns the list of all the keys sorted in the ascending numbered order
 
     if month > len(months):
@@ -36,8 +51,10 @@ def monthly_challenge_by_number(request, month):
 
 
 def monthly_challenge(request, month): # second argument is the placeholder from urls
+
     try:
         challenge_text = monthly_challenges[month] # uses the argument to access the corresponding dictionary key and return its value
-        return HttpResponse(challenge_text)
+        response_data = f"<h1>{challenge_text}</h1>"
+        return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("The URL is not supported!")
+        return HttpResponseNotFound("<h1>The URL is not supported!</h1>")
