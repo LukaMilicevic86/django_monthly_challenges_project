@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+#from django.template.loader import render_to_string
 
 
 monthly_challenges = {
@@ -17,12 +18,6 @@ monthly_challenges = {
     "novebmber": "Take a cold shower every evening!",
     "december": "Go for a 15 km bike ride every weekend!"
 }
-
-# Create your views here.
-
-# example:
-# def january(request):
-#   return HttpResponse("Eat no meat for the entire month!")
 
 def index(request):
 
@@ -54,7 +49,9 @@ def monthly_challenge(request, month): # second argument is the placeholder from
 
     try:
         challenge_text = monthly_challenges[month] # uses the argument to access the corresponding dictionary key and return its value
-        response_data = f"<h1>{challenge_text}</h1>"
-        return HttpResponse(response_data)
+        return render(request, "challenges/challenge.html")
+        # instead of:
+        # response_data = render_to_string("challenges/challenge.html")
+        # return HttpResponse(response_data)
     except:
         return HttpResponseNotFound("<h1>The URL is not supported!</h1>")

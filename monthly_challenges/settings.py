@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'challenges',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,8 +55,10 @@ ROOT_URLCONF = 'monthly_challenges.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [ # add folders django should consider when looking for templates
+           # BASE_DIR / "challenges" / "templates" # look in here
+        ],
+        'APP_DIRS': True, # tells django to look in app folders - we need to include our aop in INSTALLED_APPS above
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
