@@ -49,8 +49,11 @@ def monthly_challenge(request, month): # second argument is the placeholder from
 
     try:
         challenge_text = monthly_challenges[month] # uses the argument to access the corresponding dictionary key and return its value
-        return render(request, "challenges/challenge.html")
-        # instead of:
+        return render(request, "challenges/challenge.html",{ # the 3rd argument is a dictionary to be used in the template fole
+            "ch_text": challenge_text,
+            "month_in_question": month.capitalize()
+        })
+# instead of:
         # response_data = render_to_string("challenges/challenge.html")
         # return HttpResponse(response_data)
     except:

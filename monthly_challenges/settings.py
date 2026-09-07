@@ -58,7 +58,7 @@ TEMPLATES = [
         'DIRS': [ # add folders django should consider when looking for templates
            # BASE_DIR / "challenges" / "templates" # look in here
         ],
-        'APP_DIRS': True, # tells django to look in app folders - we need to include our aop in INSTALLED_APPS above
+        'APP_DIRS': True, # tells django to look in app folders - but first we need to include our aop in INSTALLED_APPS above
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',

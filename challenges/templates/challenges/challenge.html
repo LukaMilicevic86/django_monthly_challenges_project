@@ -5,10 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Challenge</title>
+    <title>{{ month_in_question|title }} Challenge</title>
 </head>
 <body>
-    <h1>This Month's Challenge</h1>
-    <h2>Try to walk 5000 steps every day!</h2>
+    <h1>{{ month_in_question|title }} Challenge</h1> <!-- title filter for capitalization -->
+    <h2>{{ ch_text }}</h2> <!-- special syntax to inject dynamic content here, which is not html; it's used by Django, which pares the template file --> 
 </body>
 </html>
