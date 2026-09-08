@@ -21,9 +21,15 @@ monthly_challenges = {
 
 def index(request):
 
-    list_items = ""
+    # list_items = ""
     months = list(monthly_challenges.keys())
 
+    return render(request, "challenges/index.html", {
+        "months_list": months
+    })
+
+    # instead of looping through the list here, we do it through DTL:
+    """
     for month in months:
         cap_month = month.capitalize()
         month_path = reverse("month_challenge", args = [month])
@@ -31,7 +37,7 @@ def index(request):
 
     response_data = f"<ul>{list_items}</ul>"
     return HttpResponse(response_data)
-
+    """
 
 def monthly_challenge_by_number(request, month):
 
@@ -51,7 +57,7 @@ def monthly_challenge(request, month): # second argument is the placeholder from
         challenge_text = monthly_challenges[month] # uses the argument to access the corresponding dictionary key and return its value
         return render(request, "challenges/challenge.html",{ # the 3rd argument is a dictionary to be used in the template fole
             "ch_text": challenge_text,
-            "month_in_question": month.capitalize()
+            "month_in_question": month
         })
 # instead of:
         # response_data = render_to_string("challenges/challenge.html")
