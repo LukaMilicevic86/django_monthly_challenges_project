@@ -57,6 +57,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [ # add folders django should consider when looking for templates
            # BASE_DIR / "challenges" / "templates" # look in here
+           BASE_DIR / "templates" # so DTL can know where to look when connecting templates with base template
         ],
         'APP_DIRS': True, # tells django to look in app folders - but first we need to include our aop in INSTALLED_APPS above
         'OPTIONS': {

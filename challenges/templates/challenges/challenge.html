@@ -1,14 +1,23 @@
+{% extends "base.html" %}
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ month_in_question|title }} Challenge</title>
-</head>
-<body>
+
+{% block page_title %}
+
+{{ month_in_question|title }} Challenge</title>
+
+{% endblock %} 
+
+
+
+
+ {% block content %}
+
     <h1>{{ month_in_question|title }} Challenge</h1> <!-- title filter for capitalization -->
-    <h2>{{ ch_text }}</h2> <!-- special syntax to inject dynamic content here, which is not html; it's used by Django, which pares the template file --> 
-</body>
-</html>
+    {% if ch_text is not None %}
+        <h2>{{ ch_text }}</h2> <!-- special syntax to inject dynamic content here, which is not html; it's used by Django, which pares the template file --> 
+    {% else %}
+        <p>There is no challenge for this month yet!</p>
+    {% endif %}
+
+{% endblock %} 
