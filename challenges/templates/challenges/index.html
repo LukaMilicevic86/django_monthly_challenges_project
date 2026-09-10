@@ -2,15 +2,21 @@
 
 
 
-    {% block page_title %} All challenges {% endblock %} 
+{% block page_title %}
+    All challenges
+{% endblock %} 
 
 
+    
+{% block content %} 
 
-    {% block content %} 
+    {% include "challenges/includes/header.html" %}
+
     <ul>
         {% for month in months_list %}
             <li><a href="{% url "month_challenge" month %}">{{ month|title }}</a></li>
             <!-- url tag arguments are those from urls.py, separated by blank spaces-->
         {% endfor %}
     </ul>
-    {% endblock %} 
+
+{% endblock %} 

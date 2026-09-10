@@ -3,15 +3,14 @@
 
 
 {% block page_title %}
-
-{{ month_in_question|title }} Challenge</title>
-
+    {{ month_in_question|title }} Challenge</title>
 {% endblock %} 
 
 
 
+{% block content %}
 
- {% block content %}
+    {% include "challenges/includes/header.html" %}
 
     <h1>{{ month_in_question|title }} Challenge</h1> <!-- title filter for capitalization -->
     {% if ch_text is not None %}

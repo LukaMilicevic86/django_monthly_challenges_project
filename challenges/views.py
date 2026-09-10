@@ -1,19 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
-#from django.template.loader import render_to_string
+# from django.template.loader import render_to_string
 
 
 monthly_challenges = {
     "january": "Try to walk 5000 steps every day!",
     "february": "Do a good deed every day!",
-    "march": "Practice an instrument for 20 minutes a day!",
+    "march": "Practice playing an instrument for 20 minutes a day!",
     "april": "Listen to a new song every day!",
     "may": "Cook lunch at home every weekday!",
     "june": "Meditate at least 30 minutes every evening!",
     "july": "Visit a new place nearby every weekend!",
     "august": "Do a stretch session every morning!",
-    "september": "Eat a fruit and a vegetable every day!",
+    "september": "Eat some fruit and vegetable every day!",
     "october": "Talk to someone from your family every weekend!",
     "novebmber": "Take a cold shower every evening!",
     "december": None
@@ -28,7 +28,7 @@ def index(request):
         "months_list": months
     })
 
-    # instead of looping through the list here, we do it through DTL:
+    # instead of looping through the list here, we do it through DTL in the HTML file:
     """
     for month in months:
         cap_month = month.capitalize()
@@ -55,7 +55,7 @@ def monthly_challenge(request, month): # second argument is the placeholder from
 
     try:
         challenge_text = monthly_challenges[month] # uses the argument to access the corresponding dictionary key and return its value
-        return render(request, "challenges/challenge.html",{ # the 3rd argument is a dictionary to be used in the template fole
+        return render(request, "challenges/challenge.html",{ # the 3rd argument is a dictionary to be used in the template file
             "ch_text": challenge_text,
             "month_in_question": month
         })
@@ -63,4 +63,8 @@ def monthly_challenge(request, month): # second argument is the placeholder from
         # response_data = render_to_string("challenges/challenge.html")
         # return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("<h1>The URL is not supported!</h1>")
+        raise Http404() # looks for a file named 404 in templates folder
+
+        # instead of:
+        #response_data = render_to_string("404.html")
+        #return HttpResponseNotFound(response_data)
